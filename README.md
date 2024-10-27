@@ -1,3 +1,5 @@
+##  Supports merged mining! Supports simultaneous payment of pow and multiple auxpow coins!
+
 #How to install Yiimp? Use the Yiimp installation script.
 
 - https://github.com/msy2008/yiimp_install_scrypt
