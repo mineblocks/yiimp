@@ -164,7 +164,15 @@ class ApiController extends CommonController
 
                                 $min_ttf = $coin->network_ttf > 0 ? min($coin->actual_ttf, $coin->network_ttf) : $coin->actual_ttf;
                                 $network_hash = $coin->difficulty * 0x100000000 / ($min_ttf ? $min_ttf : 60);
-                                $min_payout = max(floatval(YAAMP_PAYMENTS_MINI), floatval($coin->payout_min));
+
+				// API:Set the minimum payout amount  
+                                // If the coin symbol is DOGE, set the minimum payout to 1  
+				if ($coin->symbol === 'DOGE') {  
+                                    $min_payout = 1; 
+                                } else { 
+                                    $min_payout = max(floatval(YAAMP_PAYMENTS_MINI), floatval($coin->payout_min));
+                                }
+				
                                 $pool_hash_pow = yaamp_pool_rate_pow($coin->algo);
                                 $pool_hash = yaamp_coin_rate($coin->id);
 
