@@ -78,7 +78,7 @@ foreach($list as $coin)
 	$name = substr($coin->name, 0, 12);
 	$difficulty = Itoa2($coin->difficulty, 3);
 	$price = bitcoinvaluetoa($coin->price);
-	$height = number_format($coin->block_height, 0, '.', ' ');
+	$height = number_format($coin->block_height, 0, '', '');
 //	$pool_ttf = $coin->pool_ttf? sectoa2($coin->pool_ttf): '';
 	$pool_ttf = $total_rate? $coin->difficulty * 0x100000000 / $total_rate: 0;
 	$reward = round($coin->reward, 3);
