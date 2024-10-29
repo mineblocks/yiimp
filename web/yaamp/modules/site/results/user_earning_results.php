@@ -33,6 +33,7 @@ span.block.cleared  { color: white; background-color: gray; }
 <tr>
 <td></td>
 <th>Name</th>
+<th>Block</th>
 <th align=right>Amount</th>
 <th align=right>Percent</th>
 <th align=right>mBTC</th>
@@ -80,11 +81,12 @@ foreach($earnings as $earning)
 	$reward = altcoinvaluetoa($earning->amount);
 	$percent = $block->amount ? percentvaluetoa($earning->amount * 100/$block->amount) : 0;
 	$value = mbitcoinvaluetoa($earning->amount*$earning->price*1000);
-
+        $height = number_format($block->height, 0, '.', '');
 	$blockUrl = $coin->createExplorerLink($coin->name, array('height'=>$block->height));
 	echo '<tr class="ssrow">';
 	echo '<td width="18"><img width="16" src="'.$coin->image.'"></td>';
 	echo '<td><b>'.$blockUrl.'</b><span style="font-size: .8em;"> ('.$coin->algo.')</span></td>';
+	echo '<td class="row right">'.$height.'</td>';
 	echo '<td align="right" style="font-size: .8em;"><b>'.$reward.'</b></td>';
 	echo '<td align="right" style="font-size: .8em;">'.$percent.'%</td>';
 	echo '<td align="right" style="font-size: .8em;">'.$value.'</td>';
