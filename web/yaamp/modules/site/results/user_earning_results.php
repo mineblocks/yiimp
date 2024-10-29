@@ -81,7 +81,7 @@ foreach($earnings as $earning)
 	$reward = altcoinvaluetoa($earning->amount);
 	$percent = $block->amount ? percentvaluetoa($earning->amount * 100/$block->amount) : 0;
 	$value = mbitcoinvaluetoa($earning->amount*$earning->price*1000);
-        $height = number_format($block->height, 0, '.', '');
+        $height = number_format($block->height, 0, '', '');
 	$blockUrl = $coin->createExplorerLink($coin->name, array('height'=>$block->height));
 	echo '<tr class="ssrow">';
 	echo '<td width="18"><img width="16" src="'.$coin->image.'"></td>';
