@@ -86,7 +86,7 @@ foreach($db_blocks as $db_block)
 	$reward = round($db_block->amount, 3);
 	$coin = $db_block->coin ? $db_block->coin : getdbo('db_coins', $db_block->coin_id);
 	$difficulty = Itoa2($db_block->difficulty, 3);
-	$height = number_format($db_block->height, 0, '.', '');
+	$height = number_format($db_block->height, 0, '', '');
 
 	$link = $coin->createExplorerLink($coin->name, array('hash'=>$db_block->blockhash));
 
