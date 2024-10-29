@@ -618,7 +618,7 @@ foreach($db_blocks as $db_block)
 		continue;
 	}
 
-	$height = number_format($db_block->height, 0, '.', ' ');
+	$height = number_format($db_block->height, 0, '', '');
 	$diff = Itoa2($db_block->difficulty, 3);
 
 	$algo_color = getAlgoColors($coin->algo);
