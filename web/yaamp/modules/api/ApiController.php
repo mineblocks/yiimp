@@ -194,7 +194,7 @@ class ApiController extends CommonController
                                         'minimumPayment' => $min_payout,
 					'workers' => $workers,
 					'shares' =>  (int) arraySafeVal($shares,'shares'),
-					'hashrate' => $pool_hash_pow,
+					'hashrate' => round($pool_hash_pow, 2),
 					'estimate' => $btcmhd,
 					//'percent' => round($factor * 100, 1),
 					'24h_blocks' => (int) arraySafeVal($res24h,'a'),
