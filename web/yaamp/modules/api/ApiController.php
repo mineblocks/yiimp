@@ -127,12 +127,20 @@ class ApiController extends CommonController
 				$timesincelast = $timelast = (int) arraySafeVal($last,'time');
 				if ($timelast > 0) $timesincelast = time() - $timelast;
 
-				$workers = (int) dboscalar("SELECT count(W.userid) AS workers FROM workers W ".
-					"INNER JOIN accounts A ON A.id = W.userid ".
-					"WHERE W.algo=:algo AND A.coinid IN (:id, 6)", // 6: btc id
-					array(':algo'=>$coin->algo, ':id'=>$coin->id)
-				);
-
+				$workers = (int) dboscalar("  
+                                    SELECT COUNT(W.userid) AS workers   
+                                    FROM workers W  
+                                    INNER JOIN (  
+                                        SELECT id, coinid FROM accounts   
+                                        UNION   
+                                        SELECT id, coinid FROM accountsdogm  
+                                        UNION   
+                                        SELECT id, coinid FROM accountsdoge  
+                                    ) A ON A.id = W.userid  
+                                    WHERE W.algo = :algo AND A.coinid IN (:id, 6)", // 6: btc id
+                                    array(':algo' => $coin->algo, ':id' => $coin->id)
+                                );
+				
 				$since = $timelast ? $timelast : time() - 60*60;
 				$shares = dborow("SELECT count(id) AS shares, SUM(difficulty) AS coin_hr FROM shares WHERE time>$since AND algo=:algo AND coinid IN (0,:id)",
 					array(':id'=>$coin->id,':algo'=>$coin->algo)
