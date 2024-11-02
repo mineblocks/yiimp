@@ -69,9 +69,9 @@ foreach($earnings as $earning)
 	if(!$coin) continue;
 
 	if ($coin->symbol === 'DOGM') {  
-            $user = getdbo('accountsdogm', $earning->userid);  
+            $user = getdbo('db_accountsdogm', $earning->userid);  
         } elseif ($coin->symbol === 'DOGE') {  
-            $user = getdbo('accountsdoge', $earning->userid);  
+            $user = getdbo('db_accountsdoge', $earning->userid);  
         } else {  
             $user = getdbo('db_accounts', $earning->userid);  
         }
