@@ -43,11 +43,11 @@ echo <<<end
 <th data-sorter="" width="20"></th>
 <th data-sorter="text">Coin</th>
 <th data-sorter="text">Address</th>
-<th data-sorter="currency">Quantity</th>
+<th data-sorter="currency">Amount</th>
 <th data-sorter="currency">BTC</th>
 <th data-sorter="numeric">Block</th>
 <th data-sorter="">Status</th>
-<th data-sorter="numeric">Sent</th>
+<th data-sorter="numeric">Time</th>
 <th data-sorter="" class="actions">Actions</th>
 </tr>
 </thead><tbody>
