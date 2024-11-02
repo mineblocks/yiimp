@@ -68,7 +68,13 @@ foreach($earnings as $earning)
 	$coin = getdbo('db_coins', $earning->coinid);
 	if(!$coin) continue;
 
-	$user = getdbo('db_accounts', $earning->userid);
+	if ($coin->symbol === 'DOGM') {  
+            $user = getdbo('accountsdogm', $earning->userid);  
+        } elseif ($coin->symbol === 'DOGE') {  
+            $user = getdbo('accountsdoge', $earning->userid);  
+        } else {  
+            $user = getdbo('db_accounts', $earning->userid);  
+        }
 	if(!$user) continue;
 
 	$block = getdbo('db_blocks', $earning->blockid);
