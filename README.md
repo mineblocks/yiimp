@@ -26,6 +26,14 @@ USE yiimpfrontend;
 ```
 SHOW TABLES;
 ```
+- Query the accounts table structure
+```
+DESCRIBE accounts;
+```
+- Query all data stored in the accounts table
+```
+SELECT * FROM accounts;
+```
 - Create a new table with the same structure as the accounts table (assuming the new table is named accountsdogm):
 ```
 CREATE TABLE accountsdogm LIKE accounts;
