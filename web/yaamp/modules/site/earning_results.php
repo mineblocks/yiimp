@@ -40,6 +40,7 @@ showTableSorter('maintable', "{
 echo <<<end
 <thead>
 <tr>
+<th data-sorter="numeric">UID</th>	
 <th data-sorter="" width="20"></th>
 <th data-sorter="text">Coin</th>
 <th data-sorter="text">Address</th>
@@ -81,6 +82,7 @@ foreach($earnings as $earning)
 	$coinlink = CHtml::link($coin->name, '/site/coin?id='.$coin->id);
 
 	echo '<tr class="ssrow">';
+	echo '<td width="24">'.$user->id.'</td>';
 	echo "<td>$coinimg</td>";
 	echo "<td><b>$coinlink</b>&nbsp;($coin->symbol_show)</td>";
 	echo '<td><b><a href="/?address='.$user->username.'">'.$user->username.'</a></b></td>';
