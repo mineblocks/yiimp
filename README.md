@@ -47,6 +47,12 @@ INSERT INTO accountsdogm (id, coinid, username, coinsymbol) VALUES (1, 1426, 'D9
 ```
 SELECT * FROM accountsdogm;
 ```
+- Update the username field value of the record with id 1 in the accountsdogm table to DHLtLzrowM63oURS1Z7Lw3YGbypBDNakVy
+- Please enter the data according to the actual situation of your mining pool！
+```
+UPDATE accountsdogm SET username = 'DHLtLzrowM63oURS1Z7Lw3YGbypBDNakVy' WHERE id = 1;
+```
+## In the accountsdogm and accounts table, the id field is the UID, you should associate the miners UID!
 
 ***********************************
 ## Old and I've never used it!
