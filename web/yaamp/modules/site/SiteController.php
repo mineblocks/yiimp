@@ -620,6 +620,16 @@ class SiteController extends CommonController
 		$this->renderPartial('earning_results');
 	}
 
+	public function actionBlockEarning()
+	{
+		$this->render('blockearning');
+	}
+
+	public function actionBlockEarning_results()
+	{
+		$this->renderPartial('blockearning_results');
+	}
+
 	// called from the wallet
 	public function actionClearearnings()
 	{
