@@ -87,7 +87,7 @@ function BackendCoinPayments($coin)
         } elseif ($coin->symbol === 'DOGE') {  
             $min_payout = 1;  
         } else {  
-            $min_payout = max(floatval(YAAMP_PAYMENTS_MINI), floatval($coin->payout_min));  
+            $min_payout = max(floatval(YAAMP_PAYMENTS_MINI), floatval($coin->payout_min), $txfee); 
         }
 
 	if(date("w", time()) == 0 && date("H", time()) > 18) { // sunday evening, minimum reduced
