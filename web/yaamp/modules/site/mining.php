@@ -29,15 +29,15 @@ end;
 if($algo != 'all')
 echo <<<end
 <div class="main-left-box">
-<div class="main-left-title">Last 24 Hours Estimate ($algo)</div>
-<div class="main-left-inner"><br>
-<div id='graph_results_price' style='height: $height;'></div><br>
-</div></div><br>
-
-<div class="main-left-box">
 <div class="main-left-title">Last 24 Hours Hashrate ($algo)</div>
 <div class="main-left-inner"><br>
 <div id='pool_hashrate_results' style='height: $height;'></div><br>
+</div></div><br>
+
+<div class="main-left-box">
+<div class="main-left-title">Last 7 Days Hashrate ($algo)</div>
+<div class="main-left-inner"><br>
+<div id='pool_hashrate_7d_results' style='height: $height;'></div><br>
 </div></div><br>
 end;
 
@@ -82,6 +82,7 @@ function page_refresh()
 	if(global_algo != 'all')
 	{
 		pool_hashrate_refresh();
+                pool_hashrate_7d_refresh();
 		main_refresh_price();
 	}
 }
@@ -127,55 +128,6 @@ function found_refresh()
 
 ///////////////////////////////////////////////////////////////////////
 
-function main_ready_price(data)
-{
-	graph_init_price(data);
-}
-
-function main_refresh_price()
-{
-	var url = "/site/graph_price_results";
-	$.get(url, '', main_ready_price);
-}
-
-function graph_init_price(data)
-{
-	$('#graph_results_price').empty();
-
-	var t = $.parseJSON(data);
-	var plot1 = $.jqplot('graph_results_price', t,
-	{
-		title: '<b>Estimate (mBTC/{$algo_unit}/day)</b>',
-		axes: {
-			xaxis: {
-				tickInterval: 7200,
-				renderer: $.jqplot.DateAxisRenderer,
-				tickOptions: {formatString: '<font size=1>%#Hh</font>'}
-			},
-			yaxis: {
-				min: 0,
-				tickOptions: {formatString: '<font size=1>%#.3f &nbsp;</font>'}
-			}
-		},
-
-		seriesDefaults:
-		{
-			markerOptions: { style: 'none' }
-		},
-
-		grid:
-		{
-			borderWidth: 1,
-			shadowWidth: 0,
-			shadowDepth: 0,
-			background: '#41464b'
-		},
-
-	});
-}
-
-///////////////////////////////////////////////////////////////////////
-
 function pool_hashrate_ready(data)
 {
 	pool_hashrate_graph_init(data);
@@ -197,13 +149,67 @@ function pool_hashrate_graph_init(data)
 		title: '<b>Pool Hashrate (Mh/s)</b>',
 		axes: {
 			xaxis: {
-				tickInterval: 7200,
+				tickInterval: 3600,
 				renderer: $.jqplot.DateAxisRenderer,
 				tickOptions: {formatString: '<font size=1>%#Hh</font>'}
 			},
 			yaxis: {
 				min: 0,
-				tickOptions: {formatString: '<font size=1>%#.3f &nbsp;</font>'}
+				tickOptions: { formatString: '<font size=1>%d</font>' }
+			}
+		},
+
+		seriesDefaults:
+		{
+			markerOptions: { style: 'none' }
+		},
+
+		grid:
+		{
+			borderWidth: 1,
+			shadowWidth: 0,
+			shadowDepth: 0,
+			background: '#41464b'
+		},
+
+		highlighter:
+		{
+			show: true
+		},
+
+	});
+}
+
+///////////////////////////////////////////////////////////////////////
+
+function pool_hashrate_7d_ready(data)
+{
+	pool_hashrate_7d_graph_init(data);
+}
+
+function pool_hashrate_7d_refresh()
+{
+	var url = "/site/graph_hashrate_7d_results";
+	$.get(url, '', pool_hashrate_7d_ready);
+}
+
+function pool_hashrate_7d_graph_init(data)
+{
+	$('#pool_hashrate_7d_results').empty();
+
+	var t = $.parseJSON(data);
+	var plot1 = $.jqplot('pool_hashrate_7d_results', t,
+	{
+		title: '<b>Pool Hashrate (Mh/s)</b>',
+		axes: {
+			xaxis: {
+				tickInterval: 6*3600,
+				renderer: $.jqplot.DateAxisRenderer,
+				tickOptions: {formatString: '<font size=1>%#Hh</font>'}
+			},
+			yaxis: {
+				min: 0,
+				tickOptions: { formatString: '<font size=1>%d</font>' }
 			}
 		},
 
@@ -232,8 +238,6 @@ function pool_hashrate_graph_init(data)
 
 
 end;
-
-
 
 
 

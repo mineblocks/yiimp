@@ -8,7 +8,7 @@ class SiteController extends CommonController
 	// Security Note: You can rename this action as you
 	// want, to customize the admin entrance url...
 	//
-	public function actionAdminRights()
+	public function actionAdminPanel()
 	{
 		$client_ip = arraySafeVal($_SERVER,'REMOTE_ADDR');
 		$valid = isAdminIP($client_ip);
@@ -464,6 +464,12 @@ class SiteController extends CommonController
 	public function actionGraph_hashrate_results()
 	{
 		$this->renderPartialAlgoMemcached('results/graph_hashrate_results');
+	}
+
+	// Pool tab: graph algo pool hashrate_7d (json data)
+	public function actionGraph_hashrate_7d_results()
+	{
+		$this->renderPartialAlgoMemcached('results/graph_hashrate_7d_results');
 	}
 
 	// Pool tab: graph algo estimate history (json data)
