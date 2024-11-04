@@ -37,17 +37,17 @@ function BackendQuickClean()
 	{
 		$delay = time() - 60*24*60*60;
 
-		$id = dboscalar("select id from blocks where coin_id=$coin->id and time<$delay and
-			id not in (select blockid from earnings where coinid=$coin->id)
-			order by id desc limit 200, 1");
+		$id = dboscalar("SELECT id FROM blocks WHERE coin_id=$coin->id AND time<$delay AND
+			id NOT IN (SELECT blockid FROM earnings WHERE coinid=$coin->id)
+			ORDER BY id DESC LIMIT 200, 1");
 
-		if($id) dborun("delete from blocks where coin_id=$coin->id and time<$delay and
-			id not in (select blockid from earnings where coinid=$coin->id) and id<$id");
+		if($id) dborun("DELETE FROM blocks WHERE coin_id=$coin->id AND time<$delay AND
+			id NOT IN (SELECT blockid FROM earnings WHERE coinid=$coin->id) AND id<$id");
 	}
 
-	dborun("delete from earnings where blockid in (select id from blocks where category='orphan')");
-	dborun("delete from earnings where blockid not in (select id from blocks)");
-	dborun("UPDATE blocks SET amount=0 WHERE category='orphan' AND amount>0");
+	dborun("DELETE FROM earnings WHERE blockid IN (SELECT id FROM blocks WHERE category = 'orphan')");
+	dborun("DELETE FROM earnings WHERE blockid NOT IN (SELECT id FROM blocks)");
+	dborun("UPDATE blocks SET amount = 0 WHERE category = 'orphan' AND amount > 0"); 
 }
 
 function marketHistoryPrune($symbol="")
@@ -134,27 +134,27 @@ function BackendCleanDatabase()
 	marketHistoryPrune();
 
 	$delay = time() - 60*24*60*60;
-	dborun("DELETE from blocks where time<$delay");
-	dborun("delete from hashstats where time<$delay");
-	dborun("delete from payouts where time<$delay");
-	dborun("delete from rentertxs where time<$delay");
-	dborun("DELETE FROM shares WHERE time<$delay");
+        dborun("DELETE FROM blocks WHERE time < $delay");  
+        dborun("DELETE FROM hashstats WHERE time < $delay");  
+        dborun("DELETE FROM payouts WHERE time < $delay");  
+        dborun("DELETE FROM rentertxs WHERE time < $delay");  
+        dborun("DELETE FROM shares WHERE time < $delay");  
 
         $delay = time() - 7*24*60*60;
-	dborun("delete from hashrate where time<$delay");
+	dborun("DELETE FROM hashrate WHERE time < $delay");
 	
 	$delay = time() - 2*24*60*60;
-	dborun("delete from stats where time<$delay");
-	dborun("delete from hashuser where time<$delay");
-	dborun("delete from hashrenter where time<$delay");
-	dborun("delete from balanceuser where time<$delay");
-	dborun("delete from exchange where send_time<$delay");
+        dborun("DELETE FROM stats WHERE time < $delay");  
+        dborun("DELETE FROM hashuser WHERE time < $delay");  
+        dborun("DELETE FROM hashrenter WHERE time < $delay");  
+        dborun("DELETE FROM balanceuser WHERE time < $delay");  
+        dborun("DELETE FROM exchange WHERE send_time < $delay");
 	dborun("DELETE FROM shares WHERE time<$delay AND coinid NOT IN (select id from coins)");
 
 	consolidateOldShares();
 
 	$delay = time() - 12*60*60;
-	dborun("delete from earnings where status=2 and mature_time<$delay");
+	dborun("DELETE FROM earnings WHERE status = 2 AND mature_time < $delay"); 
 }
 
 function BackendOptimizeTables()
@@ -192,7 +192,7 @@ function BackendProcessList()
 	}
 
 	$delay = time() - 5*60;
-	dborun("delete from connections where last<$delay");
+	dborun("DELETE FROM connections WHERE last < $delay");
 }
 
 function BackendRunCoinActions()
