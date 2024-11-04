@@ -203,7 +203,7 @@ function pool_hashrate_7d_graph_init(data)
 		title: '<b>Pool Hashrate (Mh/s)</b>',
 		axes: {
 			xaxis: {
-				tickInterval: 6*3600,
+				tickInterval: 8*3600,
 				renderer: $.jqplot.DateAxisRenderer,
 				tickOptions: {formatString: '<font size=1>%#Hh</font>'}
 			},
