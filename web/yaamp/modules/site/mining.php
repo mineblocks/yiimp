@@ -41,10 +41,6 @@ echo <<<end
 </div></div><br>
 end;
 
-$algo_unit = 'Mh';
-$algo_factor = yaamp_algo_mBTC_factor($algo);
-if ($algo_factor == 1000) $algo_unit = 'Gh';
-
 echo <<<end
 </td><td valign=top>
 
@@ -82,8 +78,7 @@ function page_refresh()
 	if(global_algo != 'all')
 	{
 		pool_hashrate_refresh();
-                pool_hashrate_7d_refresh();
-		main_refresh_price();
+		pool_hashrate_7d_refresh();
 	}
 }
 
@@ -235,7 +230,6 @@ function pool_hashrate_7d_graph_init(data)
 }
 
 </script>
-
 
 end;
 
