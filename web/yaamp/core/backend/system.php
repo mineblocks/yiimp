@@ -142,10 +142,10 @@ function BackendCleanDatabase()
 
         $delay = time() - 7*24*60*60;
 	dborun("DELETE FROM hashrate WHERE time < $delay");
+	dborun("DELETE FROM hashuser WHERE time < $delay");
 	
 	$delay = time() - 2*24*60*60;
         dborun("DELETE FROM stats WHERE time < $delay");  
-        dborun("DELETE FROM hashuser WHERE time < $delay");  
         dborun("DELETE FROM hashrenter WHERE time < $delay");  
         dborun("DELETE FROM balanceuser WHERE time < $delay");  
         dborun("DELETE FROM exchange WHERE send_time < $delay");
