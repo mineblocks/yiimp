@@ -163,7 +163,7 @@ $total2 = bitcoinvaluetoa($total2);
 $total3 = bitcoinvaluetoa($total3);
 $total4 = bitcoinvaluetoa($total4);
 
-echo '<tr class="ssrow" style="border-top: 2px solid #eee;">';
+/*echo '<tr class="ssrow" style="border-top: 2px solid #eee;">';
 echo '<td width="18px"><img width="16px" src="/images/btc.png"></td>';
 echo '<td colspan="2"><b>BTC Value</b></td>';
 
@@ -172,7 +172,7 @@ echo '<td align="right" style="font-size: .9em;">'.$total2.'</td>';
 echo '<td align="right" style="font-size: .9em;">'.$total3.'</td>';
 echo '<td align="right" style="font-size: .9em;">'.$total4.'</td>';
 
-echo "</tr>";
+echo "</tr>";*/
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -189,7 +189,7 @@ echo '</tr>';
 
 ///////////////////////////////////////////////////////////////////////
 
-echo '<tr class="ssrow" style="border-top: 2px solid #eee;">';
+/*echo '<tr class="ssrow" style="border-top: 2px solid #eee;">';
 echo '<td width="18px"></td>';
 echo '<td colspan="2"><b>mBTC/Mh/d</b></td>';
 
@@ -198,7 +198,7 @@ echo '<td align="right" style="font-size: .9em;">'.$btcmhday2.'</td>';
 echo '<td align="right" style="font-size: .9em;">'.$btcmhday3.'</td>';
 echo '<td align="right" style="font-size: .9em;">'.$btcmhday4.'</td>';
 
-echo '</tr>';
+echo '</tr>';*/
 
 echo '</table>';
 
