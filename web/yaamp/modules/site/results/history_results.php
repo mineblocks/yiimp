@@ -48,7 +48,7 @@ $main_ids = array();
 
 $algo = user()->getState('yaamp-algo');
 $list = dbolist("SELECT coin_id FROM blocks WHERE coin_id IN (select id from coins where algo=:algo and enable=1 and visible=1)
-	AND time>$t4 AND NOT category IN ('orphan','stake','generated') GROUP BY coin_id ORDER BY coin_id DESC",
+	AND time>$t4 AND NOT category IN ('orphan','stake','generated') GROUP BY coin_id ORDER BY coin_id ASC",
 	array(':algo'=>$algo)
 );
 
