@@ -14,6 +14,7 @@ require_once('hitbtc_trading.php');
 require_once('kucoin_trading.php');
 require_once('livecoin_trading.php');
 require_once('nova_trading.php');
+require_once('xeggex_trading.php');
 
 
 function cancelExchangeOrder($order=false)
@@ -50,6 +51,9 @@ function cancelExchangeOrder($order=false)
 				break;
 			case 'livecoin':
 				doLiveCoinCancelOrder($order->uuid);
+				break;
+			case 'xeggex':
+				doXeggexCancelOrder($order->uuid);
 				break;
 
 		}
@@ -158,6 +162,11 @@ function runExchange($exchangeName=false)
 			case 'poloniex':
 				doPoloniexTrading(true);
 				updatePoloniexMarkets();
+				break;
+			
+			case 'xeggex':
+				doXeggexTrading(true);
+				//updateXeggexMarkets();
 				break;
 
 			default:
