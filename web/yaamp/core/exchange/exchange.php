@@ -36,6 +36,7 @@ require_once("binance.php");
 require_once("cryptopia.php");
 require_once("hitbtc.php");
 require_once("kucoin.php");
+require_once("xeggex.php");
 require_once("livecoin.php");
 require_once("nova.php");
 require_once("coinexchange.php");
@@ -112,6 +113,8 @@ function getMarketUrl($coin, $marketName)
 		$url = "http://www.empoex.com/trade/{$symbol}-{$base}";
 	else if($market == 'escodex')
 		$url = "https://wallet.escodex.com/market/ESCODEX.{$symbol}_ESCODEX.{$base}";
+	else if ($market == 'xeggex')
+		$url = "https://xeggex.com/market/{$symbol}_{$base}";	
 	else if($market == 'gateio')
 		$url = "https://gate.io/trade/{$symbol}_{$base}";
 	else if($market == 'graviex')
